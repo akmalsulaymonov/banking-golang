@@ -10,7 +10,7 @@ import (
 func main() {
 	amount := types.Money(1000_00)
 	bonus := transfer.Bonus(amount)
-	fmt.Println(bonus)
+	fmt.Println(bonus)	// 500
 
 	/*
 		card := types.Card{
@@ -32,8 +32,12 @@ func main() {
 		fmt.Printf("%+v", card)
 	*/
 
-	result := card.IssueCard("USD", "Black", "AKMAL SULAYMONOV")
-	fmt.Println(result)
+	//result := card.IssueCard("USD", "Black", "AKMAL SULAYMONOV")
+	//fmt.Println(result)
+
+	cardNew := types.Card{Balance: 30_000_00, Active: true}
+	res := card.Withdraw(&cardNew, 10_000_00)
+	fmt.Println(res) // 20_000_00
 
 	balance := int64(60_000_00)
 	withdraw(&balance, 10_000_00)

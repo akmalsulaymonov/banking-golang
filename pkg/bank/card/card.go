@@ -3,13 +3,18 @@ package card
 import "bank/pkg/bank/types"
 
 const withdrawLimit = 20_000_00
+const depositLimit = 50_000_00
 
-func Withdraw(card *types.Card, amount types.Money) types.Card {
-	// TODO: произвести операции с картой
+func Withdraw(card *types.Card, amount types.Money) {
 	if card.Active == true && card.Balance >= amount && amount > 0 && amount <= withdrawLimit {
 		card.Balance -= amount
 	}
-	return *card
+}
+
+func Deposit(card *types.Card, amount types.Money) {
+	if card.Active == true && amount > 0 && amount <= depositLimit {
+		card.Balance += amount
+	}
 }
 
 func IssueCard(currency types.Currency, color string, name string) types.Card {

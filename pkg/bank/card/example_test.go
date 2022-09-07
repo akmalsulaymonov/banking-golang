@@ -40,3 +40,31 @@ func ExampleCard() {
 	fmt.Println(clone.Balance)
 	// Output: 2000000
 }
+
+func ExampleDeposit_active() {
+	card := types.Card{Balance: 20_000_00, Active: true}
+	Deposit(&card, 10_000_00)
+	fmt.Println(card.Balance)
+	// Output: 3000000
+}
+
+func ExampleDeposit_inactive() {
+	card := types.Card{Balance: 20_000_00, Active: false}
+	Deposit(&card, 10_000_00)
+	fmt.Println(card.Balance)
+	// Output: 2000000
+}
+
+func ExampleDeposit_negative() {
+	card := types.Card{Balance: -10_000_00, Active: true}
+	Deposit(&card, 30_000_00)
+	fmt.Println(card.Balance)
+	// Output: 2000000
+}
+
+func ExampleDeposit_limit() {
+	card := types.Card{Balance: 20_000_00, Active: true}
+	Deposit(&card, 60_000_00)
+	fmt.Println(card.Balance)
+	// Output: 2000000
+}

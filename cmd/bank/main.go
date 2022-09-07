@@ -34,6 +34,15 @@ func main() {
 
 	result := card.IssueCard("USD", "Black", "AKMAL SULAYMONOV")
 	fmt.Println(result)
+
+	balance := int64(60_000_00)
+	withdraw(&balance, 10_000_00)
+	fmt.Println(balance) // 50_000_00
+
+}
+
+func withdraw(balance *int64, amount int64) {
+	*balance -= amount
 }
 
 func handle(card types.Card) {

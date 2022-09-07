@@ -17,6 +17,16 @@ func Deposit(card *types.Card, amount types.Money) {
 	}
 }
 
+func AddBonus(card *types.Card, percent int, daysInMonth int, daysInYear int) {
+	if card.Active == true && card.Balance > 0 {
+		bonus := (int(card.MinBalance) * percent / 100 * daysInMonth) / daysInYear
+		if bonus > 5_000_00 {
+			bonus = 0
+		}
+		card.Balance += types.Money(bonus)
+	}
+}
+
 func IssueCard(currency types.Currency, color string, name string) types.Card {
 	card := types.Card{
 		ID:       1000,

@@ -68,3 +68,33 @@ func ExampleDeposit_limit() {
 	fmt.Println(card.Balance)
 	// Output: 2000000
 }
+
+func ExampleAddBonus_positive() {
+	result := types.Card{Balance: 10_000_00, MinBalance: 10_000_00, Active: true}
+	AddBonus(&result, 3, 30, 365)
+	fmt.Println(result.Balance)
+	// Output:
+	// 1002465
+}
+func ExampleAddBonus_inactive() {
+	result := types.Card{Balance: 10_000_00, MinBalance: 10_000_00, Active: false}
+	AddBonus(&result, 3, 30, 365)
+	fmt.Println(result.Balance)
+	// Output:
+	// 1000000
+}
+func ExampleAddBonus_noMoney() {
+	result := types.Card{Balance: -10, MinBalance: 10_000_00, Active: true}
+	AddBonus(&result, 3, 30, 365)
+	fmt.Println(result.Balance)
+	// Output:
+	// -10
+}
+
+func ExampleAddBonus_limit() {
+	result := types.Card{Balance: 10_000_00, MinBalance: 1_000_000_000_00, Active: true}
+	AddBonus(&result, 3, 30, 365)
+	fmt.Println(result.Balance)
+	// Output:
+	// 1000000
+}

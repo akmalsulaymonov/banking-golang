@@ -39,3 +39,13 @@ func IssueCard(currency types.Currency, color string, name string) types.Card {
 	}
 	return card
 }
+
+func Total(cards []types.Card) types.Money {
+	sum := types.Money(0)
+	for _, card := range cards {
+		if card.Active == true && card.Balance > 0 {
+			sum += card.Balance
+		}
+	}
+	return sum
+}

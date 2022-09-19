@@ -1,6 +1,7 @@
 package main
 
 import (
+	"bank/pkg/bank/card"
 	"bank/pkg/bank/transfer"
 	"bank/pkg/bank/types"
 	"fmt"
@@ -41,6 +42,30 @@ func main() {
 	balance := int64(60_000_00)
 	withdraw(&balance, 10_000_00)
 	fmt.Println(balance) // 50_000_00
+
+	cards := []types.Card{
+		{
+			Balance: 10_000_00,
+			Active:  true,
+			PAN:     "5058 xxxx xxxx 0000",
+		},
+		{
+			Balance: 50_000_00,
+			Active:  true,
+			PAN:     "5058 xxxx xxxx 1111",
+		},
+		{
+			Balance: 10_000_00,
+			Active:  false,
+			PAN:     "5058 xxxx xxxx 2222",
+		},
+		{
+			Balance: -20_000_00,
+			Active:  true,
+			PAN:     "5058 xxxx xxxx 3333",
+		},
+	}
+	fmt.Println(card.PaymentSources(cards))
 
 }
 

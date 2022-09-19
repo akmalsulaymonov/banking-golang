@@ -43,9 +43,23 @@ func IssueCard(currency types.Currency, color string, name string) types.Card {
 func Total(cards []types.Card) types.Money {
 	sum := types.Money(0)
 	for _, card := range cards {
-		if card.Active == true && card.Balance > 0 {
+		if card.Active && card.Balance > 0 {
 			sum += card.Balance
 		}
 	}
 	return sum
+}
+
+func PaymentSources(cards []types.Card) []types.PaymentSource {
+	var payment [] types.PaymentSource
+	var payment_type types.PaymentSource
+	for _, card := range cards {
+		if card.Active && card.Balance > 0 {
+			payment_type.Type = "Card"
+			payment_type.Number = string(card.PAN)
+			payment_type.Balance = card.Balance
+			payment = append(payment, payment_type)
+		}
+	}
+	return payment
 }

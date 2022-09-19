@@ -100,24 +100,64 @@ func ExampleAddBonus_limit() {
 }
 
 func ExampleTotal() {
-	cards := []types.Card{
+	/*
+		cards := []types.Card{
+			{
+				Balance: 10_000_00,
+				Active:  true,
+			},
+			{
+				Balance: 10_000_00,
+				Active:  false,
+			},
+			{
+				Balance: -20_000_00,
+				Active:  true,
+			},
+			{
+				Balance: 10_000_00,
+				Active:  true,
+			},
+		}
+		fmt.Println(Total(cards))
+		// Output: 2000000
+	*/
+
+	fmt.Println(Total([]types.Card{
 		{
-			Balance: 10_000_00,
+			Balance: 1_000_00,
+			Active:  true,
+		},
+	}))
+
+	fmt.Println(Total([]types.Card{
+		{
+			Balance: 1_000_00,
 			Active:  true,
 		},
 		{
-			Balance: 10_000_00,
+			Balance: 2_000_00,
+			Active:  true,
+		},
+	}))
+
+	fmt.Println(Total([]types.Card{
+		{
+			Balance: 1_000_00,
 			Active:  false,
 		},
+	}))
+
+	fmt.Println(Total([]types.Card{
 		{
-			Balance: -20_000_00,
+			Balance: -1_000_00,
 			Active:  true,
 		},
-		{
-			Balance: 10_000_00,
-			Active:  true,
-		},
-	}
-	fmt.Println(Total(cards))
-	// Output: 2000000
+	}))
+
+	// Output:
+	// 100000
+	// 300000
+	// 0
+	// 0
 }

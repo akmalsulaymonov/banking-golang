@@ -3,6 +3,9 @@ package types
 // Money
 type Money int64
 
+// Category (auto, chemist, shops, restaurants, etc...)
+type Category string
+
 // Currency
 type Currency string
 
@@ -29,8 +32,9 @@ type Card struct {
 }
 
 type Payment struct {
-	ID     int
-	Amount Money
+	ID       int
+	Amount   Money
+	Category Category
 }
 
 type PaymentSource struct {

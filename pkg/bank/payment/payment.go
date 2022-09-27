@@ -1,6 +1,6 @@
 package payment
 
-import "bank/pkg/bank/types"
+import "github.com/akmalsulaymonov/banking-golang/pkg/bank/types"
 
 func Max(payments []types.Payment) types.Payment {
 	max := payments[0]

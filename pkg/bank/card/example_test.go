@@ -1,8 +1,9 @@
 package card
 
 import (
-	"bank/pkg/bank/types"
 	"fmt"
+
+	"github.com/akmalsulaymonov/banking-golang/pkg/bank/types"
 )
 
 func ExampleWithdraw_positive() {

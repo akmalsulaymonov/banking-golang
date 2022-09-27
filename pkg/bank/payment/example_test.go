@@ -1,7 +1,7 @@
 package payment
 
 import (
-	"bank/pkg/bank/types"
+	"github.com/akmalsulaymonov/banking-golang/pkg/bank/types"
 	"fmt"
 )
 

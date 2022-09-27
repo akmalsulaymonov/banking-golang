@@ -1,6 +1,6 @@
 package card
 
-import "bank/pkg/bank/types"
+import "github.com/akmalsulaymonov/banking-golang/pkg/bank/types"
 
 const withdrawLimit = 20_000_00
 const depositLimit = 50_000_00

@@ -1,10 +1,11 @@
 package main
 
 import (
-	"bank/pkg/bank/card"
-	"bank/pkg/bank/transfer"
-	"bank/pkg/bank/types"
 	"fmt"
+
+	"github.com/akmalsulaymonov/banking-golang/pkg/bank/card"
+	"github.com/akmalsulaymonov/banking-golang/pkg/bank/transfer"
+	"github.com/akmalsulaymonov/banking-golang/pkg/bank/types"
 )
 
 func main() {

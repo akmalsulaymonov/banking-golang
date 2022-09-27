@@ -21,10 +21,11 @@ func ExampleAvg() {
 		{
 			ID:       105,
 			Amount:   10_000_00,
-			Category: "Restaurant",
+			Category: "Shop",
 		},
 	}
 	avgSum := Avg(payments)
-	fmt.Println(avgSum)
-	// Output: 1000000
+	total := TotalInCategory(payments, "Shop")
+	fmt.Println(avgSum, total)
+	// Output: 1000000 1300000
 }

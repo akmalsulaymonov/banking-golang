@@ -9,6 +9,9 @@ type Category string
 // Currency
 type Currency string
 
+// Payment status
+type Status string
+
 // Currency code
 const (
 	TJS Currency = "TJS"
@@ -22,19 +25,20 @@ type PAN string
 
 // Card type
 type Card struct {
-	ID         int
-	PAN        PAN
-	Balance    Money
-	Currency   Currency
-	Color      string
-	Name       string
-	Active     bool
+	ID       int
+	PAN      PAN
+	Balance  Money
+	Currency Currency
+	Color    string
+	Name     string
+	Active   bool
 }
 
 type Payment struct {
 	ID       int
 	Amount   Money
 	Category Category
+	Status   Status
 }
 
 type PaymentSource struct {

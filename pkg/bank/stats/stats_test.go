@@ -81,3 +81,45 @@ func TestFilterByCategory_foundMultiple(t *testing.T) {
 		t.Errorf("invalid result, expected: %v, actual: %v", expected, result)
 	}
 }
+
+func TestCategoriesTotal(t *testing.T) {
+	payments := []types.Payment{
+		{
+			ID:       103,
+			Amount:   3_000_00,
+			Category: "Fun",
+		},
+		{
+			ID:       104,
+			Amount:   17_000_00,
+			Category: "Auto",
+		},
+		{
+			ID:       105,
+			Amount:   10_000_00,
+			Category: "Shop",
+		},
+		{
+			ID:       106,
+			Amount:   20_000_00,
+			Category: "Shop",
+		},
+		{
+			ID:       107,
+			Amount:   3_000_00,
+			Category: "Auto",
+		},
+	}
+
+	expected := map[types.Category]types.Money{
+		"Auto": 20_000_00,
+		"Shop": 30_000_00,
+		"Fun":  3_000_00,
+	}
+
+	result := CategoriesTotal(payments)
+
+	if !reflect.DeepEqual(expected, result) {
+		t.Errorf("invalid result, expected: %v, actual: %v", expected, result)
+	}
+}

@@ -20,6 +20,16 @@ func TotalInCategory(payments []types.Payment, category types.Category) types.Mo
 	return sum
 }
 
+func CategoriesTotal(payments []types.Payment) map[types.Category]types.Money {
+	categories := map[types.Category]types.Money{}
+
+	for _, payment := range payments {
+		categories[payment.Category] += payment.Amount
+	}
+
+	return categories
+}
+
 func FilterByCategory(payments []types.Payment, category types.Category) []types.Payment {
 	var filtered []types.Payment
 	for _, payment := range payments {

@@ -1,6 +1,7 @@
 package stats
 
 import (
+	"fmt"
 	"reflect"
 	"testing"
 
@@ -125,44 +126,68 @@ func TestCategoriesTotal(t *testing.T) {
 }
 
 func TestCategoriesAvg(t *testing.T) {
-	payments :=  []types.Payment{
-        {
-			ID:  1,
-			Amount:  10,
+	payments := []types.Payment{
+		{
+			ID:       1,
+			Amount:   10,
 			Category: "auto",
 		},
 		{
-			ID :  2,
-			Amount : 50,
+			ID:       2,
+			Amount:   50,
 			Category: "auto",
 		},
 		{
-			ID:  3,
-			Amount: 10,
+			ID:       3,
+			Amount:   10,
 			Category: "food",
 		},
-			{
-			ID:  4,
-			Amount: 30,
+		{
+			ID:       4,
+			Amount:   30,
 			Category: "food",
 		},
-			{
-			ID:  4,
-			Amount: 10,
+		{
+			ID:       4,
+			Amount:   10,
 			Category: "fun",
 		},
-
 	}
 
-    expected:=map[types.Category]types.Money{
+	expected := map[types.Category]types.Money{
 		"auto": 30,
 		"food": 20,
-		"fun" : 10,
+		"fun":  10,
 	}
 
-	result:=CategoriesAvg(payments)
+	result := CategoriesAvg(payments)
 
-	if !reflect.DeepEqual(expected,result){
-		t.Errorf("Invalid match result map, expected: %v,actual: %v",expected,result)
+	if !reflect.DeepEqual(expected, result) {
+		t.Errorf("Invalid match result map, expected: %v,actual: %v", expected, result)
+	}
+}
+
+func TestPeriodDynamic(t *testing.T) {
+	first := map[types.Category]types.Money{
+		"auto": 10,
+		"food": 20,
+	}
+	second := map[types.Category]types.Money{
+		"auto": 5,
+		"food": 3,
+		"mobile":  10,
+	}
+	expected := map[types.Category]types.Money{
+		"auto": -5,
+		"food": -17,
+		"mobile":  10,
+	}
+	result := PeriodsDynamic(first, second)
+
+	for key := range result {
+		fmt.Println(key, ":", result[key])
+	}
+	if !reflect.DeepEqual(expected, result) {
+		t.Errorf("Invalid match result map, expected: %v,actual: %v", expected, result)
 	}
 }

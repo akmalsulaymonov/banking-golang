@@ -37,5 +37,5 @@ func ExampleAvg() {
 	avgSum := Avg(payments)
 	total := TotalInCategory(payments, "Auto")
 	fmt.Println(avgSum, total)
-	// Output: 5300000 2000000
+	// Output: 1060000 2000000
 }
